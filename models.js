@@ -1,6 +1,6 @@
-import mongoose, { Mongoose } from "mongoose";
+import mongoose from "mongoose";
 
-const NoteSchema = new Mongoose.Schema({
+const NoteSchema = new mongoose.Schema({
   title: {
     type: String,
     required: false,
@@ -11,6 +11,6 @@ const NoteSchema = new Mongoose.Schema({
   }
 })
 
-const Note = mongoose.model("Note", "NoteSchema")
+const Note = mongoose.model("Note", NoteSchema)
 
 export { Note }
