@@ -8,6 +8,7 @@ dotenv.config()
 
 const port = 8000
 const app = express()
+
 app.use(cors())
 app.use(express.json())
 app.use(router)
@@ -32,6 +33,6 @@ db.on('error', console.error.bind(console, "connection error: "))
 app.listen(port, () => {
   db.once("open", function () {
     console.log("connected successfully")
-    console.log(`Example app listening on port ${port}`)
+    console.log(`http://localhost/${port}/`)
   })
 })
