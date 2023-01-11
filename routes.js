@@ -4,6 +4,7 @@ const router = express.Router()
 
 router.post('/api/v1/notes', async (req, res) => {
   const note = new Note(req.body)
+  console.log(note)
 
   try {
     await note.save()
