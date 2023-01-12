@@ -17,11 +17,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.post('/users', (req, res) => {
-  console.log(req.body)
-})
-
-
+mongoose.set('strictQuery', true)
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
