@@ -49,8 +49,7 @@ router.delete('/api/v1/note/:id', async (req, res) => {
 })
 
 // edit note
-
-router.post('/api/v1/note/:id', async (req, res) => {
+router.put('/api/v1/note/:id', async (req, res) => {
   const id = req.params.id
   const note = await Note.findById({ _id: id })
   const { title, content } = req.body
