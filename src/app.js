@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
-import indexHandler from './handlers/index.js'
+import IndexHandler from './handlers/index.js'
 dotenv.config()
 
 const port = 8000
@@ -10,7 +10,7 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
-indexHandler(app)
+IndexHandler(app)
 
 app.get('/', (req, res) => {
   res.send('Hello World!')

@@ -1,7 +1,9 @@
 import NoteHandler from './noteHandler.js'
+import UserHandler from './userHandler.js'
 
-const indexHandler = (app) => {
+const IndexHandler = (app) => {
   NoteHandler(app)
+  UserHandler(app)
 }
 
-export default indexHandler;
+export default IndexHandler;
