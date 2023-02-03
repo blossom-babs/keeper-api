@@ -1,4 +1,4 @@
-import NoteHandler from './noteHandler'
+import NoteHandler from './noteHandler.js'
 
 const indexHandler = (app) => {
   NoteHandler(app)
