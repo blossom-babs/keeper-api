@@ -14,7 +14,7 @@ router.post('/api/v1/notes', async (req, res) => {
   }
 })
 
-// get all books
+// get all notes
 router.get('/api/v1/notes', async (req, res) => {
   const notes = await Note.find({})
 
@@ -25,7 +25,7 @@ router.get('/api/v1/notes', async (req, res) => {
   }
 })
 
-// get a specific book
+// get a specific note
 router.get('/api/v1/note/:id', async (req, res) => {
   const id = req.params.id
   const note = await Note.findById({ _id: id })
