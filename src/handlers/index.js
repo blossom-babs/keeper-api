@@ -1,3 +1,7 @@
-import router from "./noteRoute";
+import NoteHandler from './noteHandler'
 
-export { router }
+const indexHandler = (app) => {
+  NoteHandler(app)
+}
+
+export default indexHandler;

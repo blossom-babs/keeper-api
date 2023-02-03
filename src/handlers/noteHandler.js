@@ -67,8 +67,8 @@ router.put('/api/v1/note/:id', async (req, res) => {
   }
 })
 
-const noteRoutes = (app) => {
+const NoteHandler = (app) => {
   app.post('/note', create)
 }
 
-export default noteRoutes
+export default NoteHandler
