@@ -1,18 +1,17 @@
 import express from 'express'
 import { Note } from '../models/NoteModel.js'
-const router = express.Router()
 
-router.post('/api/v1/notes', async (req, res) => {
-  const note = new Note(req.body)
-  console.log(note)
-
+// create note
+const create = async(req, res) =>{
   try {
+    const note = new Note(req.body)
+    console.log(note)
     await note.save()
     res.send(note)
   } catch (error) {
     res.status(500).send(error)
   }
-})
+}
 
 // get all notes
 router.get('/api/v1/notes', async (req, res) => {
@@ -68,4 +67,8 @@ router.put('/api/v1/note/:id', async (req, res) => {
   }
 })
 
-export default router
+const noteRoutes = (app) => {
+  app.post('/note', create)
+}
+
+export default noteRoutes
