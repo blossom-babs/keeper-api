@@ -1,5 +1,5 @@
 import express from 'express'
-import { Note } from './models/NoteModel.js'
+import { Note } from '../models/NoteModel.js'
 const router = express.Router()
 
 router.post('/api/v1/notes', async (req, res) => {
