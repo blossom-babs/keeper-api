@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import isEmail from 'validator/lib/isEmail.js';
+import dotenv from 'dotenv'
+dotenv.config()
 
 const { SALT_ROUNDS, BCRYPT_PASSWORD } = process.env;
 
@@ -21,17 +23,24 @@ const UserSchema = new mongoose.Schema({
   }
 })
 
-UserSchema.pre('save', async function save(next) {
-  console.log('hit')
-  if (!this.isModified('password')) return next();
-  try {
-    const salt = await bcrypt.genSalt(String(SALT_ROUNDS));
-    console.log(salt, typeof salt)
-    this.password = bcrypt.hash(this.password, salt);
-    return next();
-  } catch (err) {
-    return next(err);
-  }
+UserSchema.pre('save', function(next) {
+  var user = this;
+  // only hash the password if it has been modified (or is new)
+  if (!user.isModified('password')) return next();
+
+  // generate a salt
+  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+      if (err) return next(err);
+
+      // hash the password using our new salt
+      bcrypt.hash(user.password, salt, function(err, hash) {
+          if (err) return next(err);
+          // override the cleartext password with the hashed one
+          user.password = hash;
+          console.log(user.password)
+          next();
+      });
+  });
 });
 
 UserSchema.methods.validatePassword = async function validatePassword(data) {
