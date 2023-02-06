@@ -15,3 +15,6 @@
 2.  Associate notes with user
 3.  Labels: create, edit, delete, return
 4.  Associate labels with notes and users
+
+
+<!-- this feels a bit like cheating -->
