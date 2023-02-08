@@ -17,4 +17,6 @@
 4.  Associate labels with notes and users
 
 
-<!-- this feels a bit like cheating -->
+<!-- this feels a bit like cheating
+
+2. salt mail still not working -->
