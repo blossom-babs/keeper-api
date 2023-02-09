@@ -11,9 +11,15 @@ const create = async (req, res) => {
     await user.save()
     res.send(user)
   } catch (error) {
-    console.log(error)
-    res.status(500).send(error)
-    
+    if (error.code === 11000) {
+      res.status(500).send({ Error: 'User with this email already exists' })
+    }
+    else if (error.errors.email.name === "ValidatorError") {
+      res.status(500).send({ Error: "Invalid email" })
+    } else {
+      res.status(500).send(error)
+    }
+
   }
 }
 
