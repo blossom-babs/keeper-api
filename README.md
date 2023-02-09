@@ -12,7 +12,7 @@ Server side code of the [keeper app](https://github.com/blossom-babs/keeper-app)
 - [Jest](https://jestjs.io/) as its testing tool
 - [JsonWebToken]() Authentication and authorization
 - Express 4.17.1
-- cookie-session 1.4.0
+- Express-session 1.4.0
 - bcryptjs 2.4.3
 - mongoose 5.13.13
 - MongoDB
