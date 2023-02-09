@@ -1,6 +1,6 @@
 import { User } from '../models/userModel.js';
 
-// create a new user
+// sign up
 const create = async (req, res) => {
   try {
     const user = new User({
@@ -20,6 +20,15 @@ const create = async (req, res) => {
       res.status(500).send(error)
     }
 
+  }
+}
+
+// user can sign in
+const signin = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    
   }
 }
 
