@@ -5,11 +5,16 @@
 
 | Idx | Task | Status | Type |
 | --- | ---- | ------ | ---- |
-| 1   |      |        |      |
+| 1   | user can now sign up via email and password | ✅ Done | Feature |
 | 2   |      |        |      |
 | 3   |      |        |      |
 | 4   |      |        |      |
 | 5   |      |        |      |
+
+<!-- considering
+
+1. send verification to email
+ -->
 
 1.  Authentication: user sign in and sign up
 2.  Associate notes with user
