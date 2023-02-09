@@ -8,7 +8,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "clear && nodemon ./src/app.js"
   },
-  "keywords": [],
+  "keywords": [
+    "node.js",
+    "express",
+    "jwt",
+    "login",
+    "registration",
+    "authentication",
+    "authorization",
+    "mongodb",
+    "mongoose"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
