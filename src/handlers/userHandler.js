@@ -1,4 +1,5 @@
 import { User } from '../models/userModel.js';
+import bcrypt from "bcrypt";
 
 // sign up
 const create = async (req, res) => {
@@ -26,14 +27,31 @@ const create = async (req, res) => {
 // user can sign in
 const signin = async (req, res) => {
   try {
-    
+
+    const user = await User.findOne({ email: req.body.email })
+    if (user === null) return res.status(201).send({ Message: "User not found" })
+    else {
+      const match = await bcrypt.compare(req.body.password, user.password);
+      if (match) {
+        return res.status(201).send(user)
+      } else {
+        return res.status(201).send({ Message: "Incorrect password" })
+      }
+
+    }
+    console.log(user)
+
+
   } catch (error) {
-    
+    console.log(error)
   }
+
 }
 
+
 const UserHandler = (app) => {
-  app.post('/api/v1/users', create)
+  app.post('/api/v1/register', create)
+  app.post('/api/v1/signin', signin)
 }
 
 export default UserHandler

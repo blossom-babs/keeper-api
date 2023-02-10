@@ -3,29 +3,21 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import IndexHandler from './handlers/index.js'
-import session from 'express-session'
 dotenv.config()
 
-const {MONGO_URI, COOKIE_SECRET} = process.env
+const {MONGO_URI} = process.env
 
 const port = 8000
 const app = express()
 
 app.use(cors())
 app.use(express.json())
+IndexHandler(app)
 
-app.use(
-  cookieSession({
-    name: "Keeper",
-    secret: COOKIE_SECRET,
-    httpOnly: true
-  })
-)
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
-IndexHandler(app)
 
 mongoose.set('strictQuery', true)
 mongoose.connect(MONGO_URI, {
