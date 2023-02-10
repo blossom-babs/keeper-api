@@ -15,6 +15,7 @@
 
 1. send verification to email
 2. refactor code such that password verification (bcrypt compare happens on the user model not handler)
+3. forgot password syntax
  -->
 
  <!-- observations
