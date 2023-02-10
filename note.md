@@ -17,6 +17,10 @@
 2. refactor code such that password verification (bcrypt compare happens on the user model not handler)
  -->
 
+ <!-- observations
+ 
+ 1. After entering the wrong email, the app crashes and it does not start back up again. ✅ fixed (retained for observation) -->
+
 1.  Authentication: user sign in and sign up
 2.  Associate notes with user
 3.  Labels: create, edit, delete, return

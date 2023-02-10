@@ -13,12 +13,12 @@ const create = async (req, res) => {
     res.send(user)
   } catch (error) {
     if (error.code === 11000) {
-      res.status(500).send({ Error: 'User with this email already exists' })
+      return res.status(500).send({ Error: 'User with this email already exists' })
     }
     else if (error.errors.email.name === "ValidatorError") {
-      res.status(500).send({ Error: "Invalid email" })
+      return res.status(500).send({ Error: "Invalid email" })
     } else {
-      res.status(500).send(error)
+      return res.status(500).send(error)
     }
 
   }
