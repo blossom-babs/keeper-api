@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const { SALT_ROUNDS, BCRYPT_PASSWORD } = process.env;
+const [salt, pepper] = [Number(SALT_ROUNDS), BCRYPT_PASSWORD]
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -23,30 +24,41 @@ const UserSchema = new mongoose.Schema({
   }
 })
 
-UserSchema.pre('save', function(next) {
-  var user = this;
-  // only hash the password if it has been modified (or is new)
-  if (!user.isModified('password')) return next();
 
-  // generate a salt
-  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-      if (err) return next(err);
-
-      // hash the password using our new salt
-      bcrypt.hash(user.password, salt, function(err, hash) {
-          if (err) return next(err);
-          // override the cleartext password with the hashed one
-          user.password = hash;
-          console.log(user.password)
-          next();
-      });
-  });
+UserSchema.pre('save', async function save(next) {
+  if (!this.isModified('password')) return next();
+  try {
+    const hashedPassword = await bcrypt.genSalt(salt);
+    this.password = await bcrypt.hash(this.password + pepper, hashedPassword);
+    return next();
+  } catch (err) {
+    return next(err);
+  }
 });
 
-UserSchema.methods.validatePassword = async function validatePassword(data) {
-  return bcrypt.compare(data, this.password);
+const User = mongoose.model('User', UserSchema)
+
+User.authenticate = async function (data) {
+  const user = await User.findOne({ email: data.email })
+  if (user === null) {
+    return ({ Message: "User not found" })
+  }
+  else {
+    const hashedPassword = data.password + pepper
+    const result = await User.validatePassword(hashedPassword, user)
+    return result
+  }
+}
+
+User.validatePassword = function (password, user) {
+  const match = bcrypt.compare(password, user.password);
+  if (match) {
+    let { name, email, _id } = user
+    return ({ name, email, _id })
+  } else {
+    return ({ Message: "Incorrect password" })
+  }
 };
 
-const User = mongoose.model('User', UserSchema)
 
 export { User }

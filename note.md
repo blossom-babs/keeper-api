@@ -22,7 +22,7 @@
  
  1. After entering the wrong email, the app crashes and it does not start back up again. ✅ fixed (retained for observation) -->
 
-1.  Authentication: user sign in and sign up
+1.  Authentication: user sign in and sign up using social authentication
 2.  Associate notes with user
 3.  Labels: create, edit, delete, return
 4.  Associate labels with notes and users
