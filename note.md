@@ -31,3 +31,10 @@
 <!-- this feels a bit like cheating
 
 2. salt mail still not working -->
+
+<!-- THIS WEEK'S DELIVERABLES
+
+1. redis-jwt
+2. social authentication
+3. Labels models
+ -->
